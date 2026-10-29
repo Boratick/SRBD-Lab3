@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Магазин — ЛБ3 СРБД</title>
+  <link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+  <header>
+    <h1>Магазин</h1>
+    <span class="sub">ЛБ3 «Серверні рішення баз даних» · REST API + MS SQL Server</span>
+    <a class="swagger" href="/swagger" target="_blank">Swagger</a>
+  </header>
+
+  <main>
+    <section class="card" id="goods-section">
+      <h2>1. Товари</h2>
+      <p class="hint">Дані з таблиць <code>Goods</code> та <code>Departments</code>. Натисніть на товар, щоб побачити його продажі.</p>
+      <div class="table-wrap">
+        <table id="goods-table">
+          <thead>
+            <tr><th>Код</th><th>Назва</th><th>Відділ</th><th>Виробник</th><th class="num">Ціна, грн</th><th class="num">На складі</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="details-section" hidden>
+      <h2>Товар: <span id="d-name"></span></h2>
+      <dl class="props" id="d-props"></dl>
+
+      <h3>Продажі товару (таблиця <code>Sales</code>)</h3>
+      <div class="table-wrap">
+        <table id="sales-table">
+          <thead><tr><th>№ продажу</th><th>№ чеку</th><th class="num">Кількість</th><th>Дата</th></tr></thead>
+          <tbody></tbody>
+          <tfoot><tr><td colspan="2">Усього продано</td><td class="num" id="d-total"></td><td></td></tr></tfoot>
+        </table>
+      </div>
+
+      <h3>2. Оформити продаж (процедура <code>dbo.sp_AddSale</code>)</h3>
+      <form id="sale-form" class="inline-form">
+        <label>Кількість <input type="number" name="quantity" value="1" required></label>
+        <label>№ чеку <input type="number" name="checkNo" required></label>
+        <button type="submit">Продати</button>
+      </form>
+      <div id="sale-result" class="alert" hidden></div>
+    </section>
+
+    <section class="card">
+      <h2>3. Функції відділу</h2>
+      <form id="func-form" class="inline-form">
+        <label>Відділ <select name="deptId" id="dept-select"></select></label>
+        <label>Мін. ціна <input type="number" name="minPrice" value="0" min="0" step="0.01"></label>
+        <button type="submit">Виконати</button>
+      </form>
+
+      <p class="scalar">Скалярна функція <code>dbo.fn_CountGoodsInDept</code>: кількість товарів у відділі — <strong id="scalar-result">—</strong></p>
+
+      <h3>Таблична функція <code>dbo.fn_GetGoodsByDept</code></h3>
+      <div class="table-wrap">
+        <table id="tvf-table">
+          <thead><tr><th>Код</th><th>Назва</th><th>Виробник</th><th class="num">Ціна, грн</th><th class="num">На складі</th><th class="num">Продано</th></tr></thead>
+          <tbody><tr><td colspan="6" class="empty">Оберіть відділ і натисніть «Виконати»</td></tr></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
