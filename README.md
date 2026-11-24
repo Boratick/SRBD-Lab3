@@ -9,7 +9,7 @@
 
 | Шар | Технологія |
 |---|---|
-| СУБД | Microsoft SQL Server 2022 Express, T-SQL (процедури, скалярні та табличні функції, `THROW`) |
+| СУБД | Microsoft SQL Server 2025 Express, T-SQL (процедури, скалярні та табличні функції, `THROW`) |
 | Back-end | ASP.NET Core Web API (.NET 10, C#), контролери REST |
 | Доступ до даних | Microsoft.Data.SqlClient + Dapper |
 | Документація API | Swagger / OpenAPI (Swashbuckle.AspNetCore) |
